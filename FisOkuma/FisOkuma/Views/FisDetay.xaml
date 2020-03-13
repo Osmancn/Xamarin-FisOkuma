@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FisOkuma.Views.FisDetay"
+             Title="Fis Detay"
+             BackgroundColor="#cff1ef">
+    <ContentPage.Content>
+        <ScrollView>
+            
+            <StackLayout Margin="20">
+                <Frame CornerRadius="10" Padding="2" HasShadow="True" BackgroundColor="#f6eedf" VerticalOptions="FillAndExpand"
+           IsClippedToBounds="True">
+                    <StackLayout BackgroundColor="#f6eedf" Spacing="5"  >
+                    <Label x:Name="lblCompany"  
+                   Margin="10"
+                   FontSize="20" FontAttributes="Bold"
+                VerticalOptions="Start" 
+                HorizontalOptions="CenterAndExpand" />
+
+                    <Label x:Name="lblAdress"   
+                   FontSize="20" Margin="40,0"
+                    VerticalOptions="Start" 
+                    HorizontalOptions="CenterAndExpand" />
+                    <!--Tarih-Saat-Fiş Numarası-->
+                    <Grid Margin="40,10">
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label x:Name="lblTarih" Grid.Row="0" Grid.Column="2" HorizontalOptions="Start"></Label>
+                        <Label x:Name="lblSaat" Grid.Row="1" Grid.Column="2"></Label>
+                        <Label x:Name="lblFisNo" Grid.Row="2" Grid.Column="2"></Label>
+
+                        <Label Grid.Row="0" Grid.Column="0" Text="Tarih"></Label>
+                        <Label Grid.Row="1" Grid.Column="0" Text="Saat"></Label>
+                        <Label Grid.Row="2" Grid.Column="0" Text="Fiş No"></Label>
+                        <Label Grid.Row="0" Grid.Column="1" Text=":"></Label>
+                        <Label Grid.Row="1" Grid.Column="1" Text=":"></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Text=":"></Label>
+                    </Grid>
+
+                    <BoxView HorizontalOptions="Fill" HeightRequest="1"  Color="Black" Margin="30,0"/>
+                    <!--Ürün Listesi-->
+                    <Grid x:Name="grdRecipeItems" Margin="40,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                    <BoxView HorizontalOptions="Fill" HeightRequest="1" Color="Black" Margin="30,0"/>
+                    <!--ToplamTutar-->
+                    <Grid x:Name="RecipeItems" Margin="40,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Text="Toplam Kdv "></Label>
+                        <Label x:Name="lblToplamKdv" Grid.Row="0" Grid.Column="1" HorizontalOptions="End"></Label>
+
+                        <Label Grid.Row="1" Grid.Column="0" Text="Toplam Tutar"></Label>
+                        <Label x:Name="lblToplamTutar" Grid.Row="1" Grid.Column="1" HorizontalOptions="End"></Label>
+                    </Grid>
+                    <BoxView HorizontalOptions="Fill" HeightRequest="1" Color="Black" Margin="30,0"/>
+                    <!--TaxNumber-->
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10">
+                        <Label Text="Tax Number : "></Label>
+                        <Label x:Name="lblTaxNumber"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <Button Text="Geri" BackgroundColor="DeepSkyBlue" CornerRadius="10" Margin="10" VerticalOptions="End"></Button>
+                </StackLayout>
+            
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

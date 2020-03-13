@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:FisOkuma.Extentions"
+             mc:Ignorable="d"
+             x:Class="FisOkuma.Views.MainPage"
+             BackgroundColor="AliceBlue"
+             Title="Fis Okuma">
+
+    <AbsoluteLayout>
+        <ActivityIndicator x:Name="loadingGif" IsRunning="True" Scale="2" 
+                           Color="DeepSkyBlue"
+                           HorizontalOptions="Center" VerticalOptions="Center"
+                           AbsoluteLayout.LayoutBounds="0,0,1,0.9" AbsoluteLayout.LayoutFlags="All"
+                           ></ActivityIndicator>
+        <Image  x:Name="image"  Aspect="AspectFill" 
+                AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+        
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0,1,1,AutoSize" 
+            AbsoluteLayout.LayoutFlags="WidthProportional,PositionProportional" 
+            Orientation="Horizontal"
+            HorizontalOptions="Center"
+            >
+            <Button x:Name="btnKamera" Text="Kamera" Margin="20" Padding="20"
+                    BackgroundColor="DeepSkyBlue" TextColor="White" CornerRadius="10"
+                    Opacity="0.7" Clicked="BtnKamera_Clicked"></Button>
+            
+            <Button x:Name="btnDevam" Text="Devam" Margin="20" Padding="20"
+                    BackgroundColor="DeepSkyBlue" TextColor="White" CornerRadius="10" 
+                    Opacity="0.7" Clicked="BtnDevam_Clicked"></Button>
+            
+        </StackLayout>
+        
+    </AbsoluteLayout>
+
+</ContentPage>
