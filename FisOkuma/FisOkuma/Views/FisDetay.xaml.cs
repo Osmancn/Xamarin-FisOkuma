@@ -1,4 +1,5 @@
-﻿using FisOkuma.Models;
+﻿using FisOkuma.Common;
+using FisOkuma.Models;
 using Newtonsoft.Json;
 using Plugin.Media.Abstractions;
 using RestSharp;
@@ -21,12 +22,16 @@ namespace FisOkuma.Views
     public partial class FisDetay : ContentPage
     {
         ReceiptStr receipt;
-        public FisDetay(byte[] imageArray, string fileName)
+        public FisDetay(ReceiptStr fis)
         {
-            receipt = GetFisFromApi(imageArray, fileName);
+            receipt = fis;
 
             InitializeComponent();
-
+            if(receipt==null)
+            {
+                DisplayAlert("File Location", "Fiş Yüklenemedi", "OK");
+                return;
+            }
             lblCompany.Text = receipt.Company;
             lblAdress.Text = receipt.Adress;
             lblTarih.Text = receipt.Date;
@@ -54,20 +59,10 @@ namespace FisOkuma.Views
             lblTaxNumber.Text = receipt.TaxNumber;
 
         }
-        ReceiptStr GetFisFromApi(byte[] imageArray, string fileName)
+
+        private void btnGeri_Clicked(object sender, EventArgs e)
         {
-            var client = new RestClient("https://coden-dev.azurewebsites.net/api/");
-
-            var request = new RestRequest("SaveFileToBlobStorage", Method.POST);
-            request.AddQueryParameter("code", "FKfPkeYWaahi3Rb0FI8wkyepzgEIDE9GqXsPOnYsFn/mLkXADUSmww==");
-            request.AddFileBytes("file", imageArray, fileName);
-
-            IRestResponse<SaveReceiptOperationResult> response = client.Execute<SaveReceiptOperationResult>(request);
-
-            if (!response.IsSuccessful)
-                Navigation.PopAsync();
-            return response.Data.Receipt;
+            Navigation.PopAsync();
         }
-
     }
 }

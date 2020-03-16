@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FisOkuma.Views.FisOzet"
+             Title="Fiş Özet">
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--Images-->
+        <ScrollView  Grid.Row="0" Orientation="Horizontal" BackgroundColor="DeepSkyBlue" 
+                     Opacity="0.3" HeightRequest="100">
+            <StackLayout x:Name="lytImages" Orientation="Horizontal" Padding="10">
+
+            </StackLayout>
+        </ScrollView>
+        <!--Selected Image-->
+        <StackLayout Margin="20" Grid.Row="1">
+            <Frame CornerRadius="10" Padding="2" HasShadow="True" BackgroundColor="#f6eedf" VerticalOptions="FillAndExpand"
+           IsClippedToBounds="True">
+                <StackLayout BackgroundColor="#f6eedf" Spacing="5"  >
+                    <Label Text="Özet" Margin="10" FontSize="20" FontAttributes="Bold"
+                           VerticalOptions="Start" HorizontalOptions="CenterAndExpand"  />
+
+                    <BoxView HorizontalOptions="Fill" HeightRequest="1"  Color="Black" Margin="30,0"/>
+                    <!--Ürün Listesi-->
+                    <Grid x:Name="grdRecipeItems" Margin="40,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                    <BoxView HorizontalOptions="Fill" HeightRequest="1" Color="Black" Margin="30,0"/>
+                    <!--ToplamTutar-->
+                    <Grid x:Name="RecipeItems" Margin="40,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Text="Toplam Kdv "></Label>
+                        <Label x:Name="lblToplamKdv" Grid.Row="0" Grid.Column="1" HorizontalOptions="End"></Label>
+
+                        <Label Grid.Row="1" Grid.Column="0" Text="Toplam Tutar"></Label>
+                        <Label x:Name="lblToplamTutar" Grid.Row="1" Grid.Column="1" HorizontalOptions="End"></Label>
+                    </Grid>
+                    <BoxView HorizontalOptions="Fill" HeightRequest="1" Color="Black" Margin="30,0"/>
+                </StackLayout>
+            </Frame>
+            <Button x:Name="btnGeri" Text="Geri" BackgroundColor="DeepSkyBlue" CornerRadius="10" 
+                    Margin="10" VerticalOptions="End" Clicked="BtnGeri_Clicked"></Button>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

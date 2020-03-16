@@ -80,7 +80,8 @@
                     </StackLayout>
                 </StackLayout>
             </Frame>
-            <Button Text="Geri" BackgroundColor="DeepSkyBlue" CornerRadius="10" Margin="10" VerticalOptions="End"></Button>
+            <Button x:Name="btnGeri" Text="Geri" BackgroundColor="DeepSkyBlue" CornerRadius="10" 
+                    Margin="10" VerticalOptions="End" Clicked="btnGeri_Clicked"></Button>
                 </StackLayout>
             
 

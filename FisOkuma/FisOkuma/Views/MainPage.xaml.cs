@@ -1,4 +1,5 @@
-﻿using Plugin.Media;
+﻿using FisOkuma.Models;
+using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,9 @@ namespace FisOkuma.Views
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        string imagePath;
+        List<string> imagesPath =new List<string>();
+        List<ImageButton> images =new List<ImageButton>();
+        ImageButton selectedImage;
         public MainPage()
         {
             InitializeComponent();
@@ -38,6 +41,7 @@ namespace FisOkuma.Views
             image.Source = null;
             loadingGif.IsRunning = true;
             btnDevam.IsEnabled = false;
+            btnSil.IsEnabled = false;
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
                 await DisplayAlert("No Camera", ":( No camera available.", "OK");
@@ -48,13 +52,14 @@ namespace FisOkuma.Views
             {
                 Directory = "Sample",
                 Name = "test.jpg",
+                CompressionQuality=50,
                 PhotoSize=PhotoSize.Small
             });
 
             if (file == null)
                 return;
             
-            imagePath = file.Path;
+            imagesPath.Add(file.Path);
             
             //await DisplayAlert("File Location", file.Path, "OK");
 
@@ -63,13 +68,53 @@ namespace FisOkuma.Views
                 var stream = file.GetStream();
                 return stream;
             });
+            ImageButton newImage = new ImageButton() { Source=image.Source};
+            newImage.Clicked += ImageButton_Clicked;
+            images.Add(newImage);
+            lytImages.Children.Add(newImage);
+            selectedImage = newImage;
             btnDevam.IsEnabled = true;
+            btnSil.IsEnabled = true;
         }
 
         private async void BtnDevam_Clicked(object sender, EventArgs e)
         {
-            byte[] imgArray = ImageToBinary(imagePath);
-            await Navigation.PushAsync(new FisDetay(imgArray, Path.GetFileName(imagePath)));
+            List<ImageForApiModel> imageForApiList = new List<ImageForApiModel>();
+            foreach (var item in imagesPath)
+            {
+                imageForApiList.Add(new ImageForApiModel()
+                {
+                    imageArray = ImageToBinary(item),
+                    fileName = Path.GetFileName(item)
+                });
+
+            }
+            await Navigation.PushAsync(new FisOzet(imageForApiList));
+        }
+
+        private void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            selectedImage = (ImageButton)sender;
+            image.Source = selectedImage.Source;
+        }
+
+        private void BtnSil_Clicked(object sender, EventArgs e)
+        {
+            imagesPath.RemoveAt(images.IndexOf(selectedImage));
+            images.Remove(selectedImage);
+            lytImages.Children.Remove(selectedImage);
+            if(lytImages.Children.Count==0)
+            {
+                selectedImage = null;
+                image.Source = null;
+                btnSil.IsEnabled = false;
+                btnDevam.IsEnabled = false;
+            }
+            else
+            {
+                selectedImage = images.Last();
+                image.Source = selectedImage.Source;
+            }
         }
     }
 }

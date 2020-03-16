@@ -9,31 +9,48 @@
              BackgroundColor="AliceBlue"
              Title="Fis Okuma">
 
-    <AbsoluteLayout>
-        <ActivityIndicator x:Name="loadingGif" IsRunning="True" Scale="2" 
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--Images-->
+        <ScrollView  Grid.Row="0" Orientation="Horizontal" BackgroundColor="DeepSkyBlue" 
+                     Opacity="0.3" HeightRequest="100">
+            <StackLayout x:Name="lytImages" Orientation="Horizontal" Padding="10">
+                
+            </StackLayout>
+        </ScrollView>
+        <!--Selected Image-->
+        <AbsoluteLayout Grid.Row="1">
+            <!--loadig gif-->
+            <ActivityIndicator x:Name="loadingGif" IsRunning="True" Scale="2" 
                            Color="DeepSkyBlue"
                            HorizontalOptions="Center" VerticalOptions="Center"
-                           AbsoluteLayout.LayoutBounds="0,0,1,0.9" AbsoluteLayout.LayoutFlags="All"
+                           AbsoluteLayout.LayoutBounds="0,0.2,1,0.9" AbsoluteLayout.LayoutFlags="All"
                            ></ActivityIndicator>
-        <Image  x:Name="image"  Aspect="AspectFill" 
-                AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
-        
-        <StackLayout
+            <!--image-->
+            <Image  x:Name="image"  Aspect="Fill" AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                    AbsoluteLayout.LayoutFlags="All" />
+            <!--buttons-->
+            <StackLayout
             AbsoluteLayout.LayoutBounds="0,1,1,AutoSize" 
             AbsoluteLayout.LayoutFlags="WidthProportional,PositionProportional" 
-            Orientation="Horizontal"
-            HorizontalOptions="Center"
+            Orientation="Horizontal" HorizontalOptions="Center" Margin="15"
             >
-            <Button x:Name="btnKamera" Text="Kamera" Margin="20" Padding="20"
+                <Button x:Name="btnKamera" Text="Kamera" Margin="10" Padding="20"
                     BackgroundColor="DeepSkyBlue" TextColor="White" CornerRadius="10"
-                    Opacity="0.7" Clicked="BtnKamera_Clicked"></Button>
-            
-            <Button x:Name="btnDevam" Text="Devam" Margin="20" Padding="20"
-                    BackgroundColor="DeepSkyBlue" TextColor="White" CornerRadius="10" 
-                    Opacity="0.7" Clicked="BtnDevam_Clicked"></Button>
-            
-        </StackLayout>
-        
-    </AbsoluteLayout>
+                    Opacity="0.7" Clicked="BtnKamera_Clicked" ></Button>
+                
+                <Button x:Name="btnSil" Text="Sil" Margin="10" Padding="20"
+                    BackgroundColor="DeepSkyBlue" TextColor="White" CornerRadius="10"
+                    Opacity="0.7" Clicked="BtnSil_Clicked"></Button>
 
+                <Button x:Name="btnDevam" Text="Devam" Margin="10" Padding="20"
+                    BackgroundColor="DeepSkyBlue" TextColor="White" CornerRadius="10" 
+                    Opacity="0.7" Clicked="BtnDevam_Clicked" ></Button>
+
+            </StackLayout>
+        </AbsoluteLayout>
+    </Grid>
 </ContentPage>
